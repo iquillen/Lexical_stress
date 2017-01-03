@@ -84,7 +84,7 @@ try
             DrawFormattedText(win,txt2display,'center','center',[255 255 255]);
             
             % Get into file with audio recordings
-            audioPath = sprintf('%s/%s',expt.dataPath,'audio_recordings');
+            audioPath = sprintf('%s/%s',expt.dataPath,'normalized_recordings');
             cd(audioPath)
             
             % Extract audio data
@@ -123,7 +123,7 @@ try
             % put text in buffer 
             Screen('TextSize', win, 50);
             % txt2display = expt.words{expt.allWords(t)};
-            txt2display = '+'; % display a cross (if using only audio)
+            txt2display = '+'; % display a cross
             DrawFormattedText(win,txt2display,'center','center',[255 255 255]);
             
             % start recording
