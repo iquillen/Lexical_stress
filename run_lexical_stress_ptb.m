@@ -26,7 +26,7 @@ expt.conds = {'SW_Noun' 'WS_Noun' 'SW_Verb' 'WS_Verb'};
 % expt.words = {'custom' 'belief' 'wonder' 'retain'};
 
 if practicemode == 1
-    expt.words = {'custom' 'belief' 'wonder' 'retain'};
+    expt.words = {'custom' 'belief' 'strengthen' 'retain'};
     SW_Nouns = [1];
     WS_Nouns = [2];
     SW_Verbs = [3];
