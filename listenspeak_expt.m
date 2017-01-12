@@ -120,24 +120,24 @@ try
 %             KbWait;
 %             Screen('Flip',win);
             
-            % put text in buffer 
-            Screen('TextSize', win, 50);
-            % txt2display = expt.words{expt.allWords(t)};
-            txt2display = '+'; % display a cross
-            DrawFormattedText(win,txt2display,'center','center',[255 255 255]);
-            
             % start recording
             rectimes_speak(t) = PsychPortAudio('Start', pahandle, 0, 0, 1);
             
-            % draw text to screen
-            stimtimes_speak(t) = Screen('Flip',win);
+            % put text in buffer 
+%             Screen('TextSize', win, 50);
+%             % txt2display = expt.words{expt.allWords(t)};
+%             txt2display = '+'; % display a cross 
+%             DrawFormattedText(win,txt2display,'center','center',[255 255 255]);
+%             
+%             % draw text to screen
+%             stimtimes_speak(t) = Screen('Flip',win);
             
-            WaitSecs(expt.timing.stimdur);
+            % WaitSecs(expt.timing.stimdur);
             
-            KbWait;
+            KbWait; % wait for keyboard press to advance
             
             % clear screen
-            Screen('Flip',win);
+            stimtimes_speak(t) = Screen('Flip',win);
             % WaitSecs(expt.timing.interstimdur);
             
             % stop recording; retrieve audio data
@@ -159,6 +159,17 @@ try
             PsychPortAudio('Close', pahandle); 
             WaitSecs(1);
             
+            % Every 20 trials, display a break text
+            block = mod(t,20);
+            if t < 80 && block == 0
+                Screen('TextSize', win, 50);
+                breaktext = sprintf('Time for a break!\n\n%d of %d trials done.\n\n\n\nPress the button to continue.',t,expt.ntrials);
+                DrawFormattedText(win,breaktext,'center','center',[255 255 255]);
+                Screen('Flip',win);
+                KbWait;
+                Screen('Flip',win);
+            end
+            
         end
         
         % at end of block
@@ -168,7 +179,7 @@ try
         % at end of block, display break or end-of-experiment text
         Screen('TextSize', win, 50);
         if b < expt.nblocks
-            breaktext = sprintf('Time for a break!\n\n%d of %d trials done.\n\n\n\nPress the button to continue.',t,ntrials);
+            breaktext = sprintf('Time for a break!\n\n%d of %d trials done.\n\n\n\nPress the button to continue.',t,expt.ntrials);
         else
             breaktext = 'Thank you!\n\n\n\nPlease wait.';
         end
