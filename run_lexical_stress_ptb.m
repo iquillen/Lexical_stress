@@ -26,22 +26,22 @@ expt.conds = {'SW_Noun' 'WS_Noun' 'SW_Verb' 'WS_Verb'};
 % expt.words = {'custom' 'belief' 'wonder' 'retain'};
 
 if practicemode == 1
-    expt.words = {'custom' 'belief' 'strengthen' 'retain'};
-    SW_Nouns = [1];
-    WS_Nouns = [2];
-    SW_Verbs = [3];
-    WS_Verbs = [4];
+    expt.words = {'custom' 'routine' 'motive' 'antique'};
+    SW_Nouns = [1 3];
+    WS_Nouns = [2 4];
+    SW_Verbs = [];
+    WS_Verbs = [];
     
 else
     
-    expt.words = {'bishop' 'boredom' 'chaos' 'custom' 'essence' ... % SW Nouns
-        'fury' 'hatred' 'impulse' 'instinct' 'maker' ...
-        'mercy' 'motive' 'nonsense' 'outcome' 'outset' ...
-        'patience' 'rating' 'folly' 'token' 'treaty' ...
-        'abyss' 'advice' 'affair' 'antique' 'belief' ... % WS Nouns
-        'bequest' 'buffoon' 'cuisine' 'deceit' 'event' ...
+    expt.words = {'bishop' 'boredom' 'chaos' 'entry' 'essence' ... % SW Nouns
+        'fury' 'hatred' 'impulse' 'kingdom' 'maker' ...
+        'mercy' 'pastor' 'nonsense' 'outcome' 'outset' ...
+        'patience' 'scholar' 'folly' 'tenure' 'treaty' ... 
+        'abyss' 'advice' 'affair' 'belief' ... % WS Nouns
+        'bequest' 'buffoon' 'canal' 'cuisine' 'deceit' 'device' 'event' ...
         'expanse' 'extent' 'monsoon' 'prestige' 'receipt' ...
-        'renown' 'response' 'revenge' 'routine' 'typhoon' ...
+        'renown' 'response' 'revenge' 'typhoon' ...
         'alter' 'argue' 'bury' 'carry' 'frustrate' ... % SW Verbs
         'lessen' 'listen' 'manage' 'marry' 'peddle' ...
         'perish' 'prosper' 'punish' 'quicken' 'sever' ...
@@ -104,7 +104,7 @@ end
 save(fullfile(subjectPath,'expt.mat'),'expt');
 
 %% run experiment
-instr = 'Please LISTEN, then REPEAT the word you hear.';
+instr = sprintf('Please LISTEN, then REPEAT');
 [expt,data] = listenspeak_expt(expt,[],instr,subjectPath);
 
 %% output data
