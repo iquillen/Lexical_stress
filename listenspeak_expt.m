@@ -118,7 +118,7 @@ try
 %             DrawFormattedText(win,'Get ready to REPEAT.','center','center',[255 255 255]);
 %             Screen('Flip',win);
 %             KbWait;
-%             Screen('Flip',win);
+            Screen('Flip',win); % flip screen after word is presented
             
             % start recording
             rectimes_speak(t) = PsychPortAudio('Start', pahandle, 0, 0, 1);
